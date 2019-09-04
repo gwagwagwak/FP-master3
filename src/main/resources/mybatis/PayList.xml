@@ -19,15 +19,7 @@
 		<result property="p_type" column="p_username" />
 
 	</resultMap>
-	<insert id="insertPayList" parameterType="PayListVO">
-		<selectKey keyProperty="p_no" resultType="int" order="BEFORE">
-			select seq_paylist.nextval from dual
-		</selectKey>
-		insert into
-		paylist(p_no,p_target,p_date,p_charge,p_currc,p_type,p_cnumber,p_username)
-		values(#{p_no},#{p_target}, #{p_date}, #{p_charge},
-		#{p_currc},#{p_type} ,#{p_cnumber},#{p_username})
-	</insert>
+
 
 	<select id="getPayList" parameterType="PayListVO"
 		resultType="oracle.java.nomyBatis3.model.PayListVO">
