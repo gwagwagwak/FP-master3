@@ -20,6 +20,7 @@ import oracle.java.nomyBatis3.DTO.LoginDTO;
 import oracle.java.nomyBatis3.dao.MemberDaoImpl;
 import oracle.java.nomyBatis3.model.CardVO;
 import oracle.java.nomyBatis3.model.MemberVO;
+import oracle.java.nomyBatis3.model.PayListVO;
 import oracle.java.nomyBatis3.service.AutoPayService;
 import oracle.java.nomyBatis3.service.CardService;
 import oracle.java.nomyBatis3.service.MemberService;
@@ -37,6 +38,9 @@ public class MemberController {
 	MemberService mservice;
 	@Inject
 	CardService cservice;
+	
+	@Inject
+	PayListService pservice;
 
 	ModelAndView mv;
 
@@ -110,6 +114,7 @@ public class MemberController {
 		try {
 			MemberVO member = mservice.loginMember(logindto);
 			
+			
 			if (member != null) { // login success
 				model.addAttribute("member", member);
 				model.addAttribute("loginResult", member.getM_fname() + member.getM_lname());
@@ -119,6 +124,10 @@ public class MemberController {
 				System.out.println("аж╪р: "+member.getM_addr());
 				session.setAttribute("username", logindto.getM_email());
 				session.setAttribute("m_addr", member.getM_addr());
+				List<PayListVO> plist = pservice.getPayList(logindto.getM_email());
+				model.addAttribute("plist",plist);
+				
+				
 				return "memberMain";
 			} else { // login fail
 				model.addAttribute("loginResult", "Login Fail!");

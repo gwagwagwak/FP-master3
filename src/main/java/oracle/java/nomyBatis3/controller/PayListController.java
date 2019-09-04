@@ -42,42 +42,49 @@ public class PayListController {
 		mv=new ModelAndView();
 		mv.setViewName("payWorking");
 		HttpSession session = request.getSession();
-		String pc=request.getParameter("p_charge");
-		System.out.println(pc);
 
-		if(pc!=null){
-			mv.addObject("card",cservice.getLatestCard());
+
+		if(request.getParameter("p_charge")!=null){
+
 
 			session.setAttribute("p_target",request.getParameter("p_target"));
 			session.setAttribute("p_charge",request.getParameter("p_charge"));
+			session.setAttribute("p_type",request.getParameter("p_type"));
 
-			
 			
 			mv.addObject("p_target",request.getParameter("p_target"));
 			mv.addObject("p_charge",request.getParameter("p_charge"));
 			mv.addObject("card", cservice.getLatestCard());
 
 		}else{
-		mv.addObject("card",cservice.getCard(Integer.parseInt(request.getParameter("c_number"))));
+			mv.addObject("card",cservice.getCard(Integer.parseInt(request.getParameter("c_number"))));
 			mv.addObject("p_target",session.getAttribute("p_target"));
 			mv.addObject("p_charge",session.getAttribute("p_charge"));
 		}
 		return mv;
 	}
 	@RequestMapping(value = "payment.do")
-	public ModelAndView insertPayListHandler(@ModelAttribute PayListVO paylist) throws Exception {
+	public ModelAndView insertPayListHandler(@ModelAttribute PayListVO paylist,HttpServletRequest request) throws Exception {
 		//넘겨받은 값에의해 자동으로 객체 생성
+		HttpSession session = request.getSession();
 		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
 		Date time = new Date();
 		mv = new ModelAndView();
-		mv.setViewName("memberMain");
-		String p_target="COSMETIC_A";
+
+		mv.setViewName("success");
+		String p_target=(String)session.getAttribute("p_target");
+	
 		String p_date=format1.format(time);
-		int p_charge=25000;
-		String p_currc="credit";
-		String p_type="1";
-		String p_cnumber="555555";
-		String p_username="rmfhwlt0@naver.com";
+		int p_charge=Integer.parseInt((String)session.getAttribute("p_charge"));
+
+		String p_currc=request.getParameter("q3_myProducts3[paymentType]");
+
+		String p_type=(String)session.getAttribute("p_type");
+
+		String p_cnumber=request.getParameter("p_cnumber");
+
+		String p_username=(String)session.getAttribute("username");
+
 		
 		PayListVO pl=new PayListVO(0,p_target,p_date,p_charge,p_currc,p_type,p_cnumber,p_username);
 

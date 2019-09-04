@@ -14,9 +14,9 @@ public class PayListImpl implements PayListDao{
 	private SqlSession session;
 
 	@Override
-	public List<PayListVO> getPayList() throws Exception {
+	public List<PayListVO> getPayList(String p_username) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectList("paylist.getPayList");
+		return session.selectList("paylist.getPayList",p_username);
 	}
 
 	@Override

@@ -203,7 +203,8 @@ JotForm.paymentExtrasOnTheFly([null,{"name":"paylog","qid":"1","text":"PayLog","
    </script>
 </head>
 <body>
-<form class="jotform-form" action="payment.do" method="post" name="form_92318140173450" id="92318140173450" accept-charset="utf-8">
+<form class="jotform-form" action="payment.do?">
+
   <input type="hidden" name="formID" value="92318140173450" />
   <div role="main" class="form-all">
     <ul class="form-section page-section">
@@ -238,7 +239,7 @@ JotForm.paymentExtrasOnTheFly([null,{"name":"paylog","qid":"1","text":"PayLog","
                         <span class="form-product-details">
                           <b>
                             <span data-wrapper-react="true">
-                              $ ${p_charge}
+                              &#8361; ${p_charge}
                              
                             </span>
                           </b>
@@ -256,7 +257,8 @@ JotForm.paymentExtrasOnTheFly([null,{"name":"paylog","qid":"1","text":"PayLog","
                      
                     <span class="form-payment-price">
                       <span data-wrapper-react="true">
-                        $${p_charge}
+                        &#8361;${p_charge}
+                        <input type="hidden" value="${card.getC_number()}" name="p_cnumber" id="p_cnumber">
                         
                       </span>
                     </span>

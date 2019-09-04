@@ -136,6 +136,7 @@
 									</a>
 								</h3>
 								<ul class="cw_tile-itemList">
+								<c:forEach var="plist" items="${plist}" begin="0" end="4">
 									<li
 										class="cw_tile-itemListContainer cw_tile-itemListContainer_hover  ">
 										<a data-name="activityRowItem"
@@ -146,14 +147,14 @@
 													class="ppvx_row cw_tile-itemListRow cw_tile-activityListRow">
 													<p
 														class="ppvx_col-1 cw_tile-itemListCol cw_tile__activity-txnDateContainer test_activity-txnDateContainer">
-														<span class="ppvx_text--md cw_tile__activity-txnDateMonth">8월</span>
+														<span class="ppvx_text--md cw_tile__activity-txnDateMonth">${plist.getP_date()}</span>
 														<span class="ppvx_text--md cw_tile__activity-txnDateDay">07</span>
 													</p>
 													<p
 														class="ppvx_col-8 cw_tile-itemListCol cw_tile__activity-txnDetailsContainer test_activity-txnDetailsContainer">
 														<span
 															class="ppvx_text--md cw_tile__activity-txnDetailsCounterparty test_activity-txnDetailsCounterparty">
-															<span>Ryzac, Inc.</span>
+															<span>${plist.getP_target() }</span>
 														</span> <span
 															class="ppvx_badge ppvx_badge--status cw_tag-completed">완료됨</span>
 														<span
@@ -164,15 +165,16 @@
 														class="ppvx_col-3 cw_tile-itemListCol cw_tile__activity-txnAmountContainer test_activity-txnAmountContainer"
 														dir="ltr">
 														<span
-															class="ppvx_text--md cw_tile__activity-txnAmount  test_activity-txnAmount">-$19.99</span>
+															class="ppvx_text--md cw_tile__activity-txnAmount  test_activity-txnAmount">&#8361;${plist.getP_charge() }</span>
 													</p>
 												</span>
 											</div>
-											<p class="vx_a11yText">8월 07, Ryzac, Inc., undefined, 자동
-												결제, -$19.99</p>
+											<p class="vx_a11yText">${plist.getP_date()}, ${plist.getP_target() }, undefined, 자동
+												결제,&#8361;${plist.getP_charge() }</p>
 									</a>
 									</li>
-									<li
+									</c:forEach>
+									<!-- <li
 										class="cw_tile-itemListContainer cw_tile-itemListContainer_hover  ">
 										<a data-name="activityRowItem"
 										href="/myaccount/transactions/details/4KK743213A538530J"
@@ -243,7 +245,7 @@
 											<p class="vx_a11yText">7월 07, Ryzac, Inc., undefined, 자동
 												결제, -$19.99</p>
 									</a>
-									</li>
+									</li> -->
 								</ul>
 								<a data-name="activityButton"
 									class="ppvx_btn ppvx_btn--secondary ppvx_btn--size_sm cw_tile__activity-moreButton"

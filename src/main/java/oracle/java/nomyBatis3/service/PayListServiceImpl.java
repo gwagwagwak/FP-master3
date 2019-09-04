@@ -16,9 +16,9 @@ public class PayListServiceImpl implements PayListService{
 	private PayListDao pdao;
 
 	@Override
-	public List<PayListVO> getPayList() throws Exception {
+	public List<PayListVO> getPayList(String p_username) throws Exception {
 		// TODO Auto-generated method stub
-		return pdao.getPayList();
+		return pdao.getPayList(p_username);
 	}
 
 	@Override

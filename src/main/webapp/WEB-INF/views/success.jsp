@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<a href="payform.do?p_target=Ryzac.Inc&&p_charge=12000&&p_type=1">구매하기</a>
-
+구매가 완료되었습니다. 감사합니다
+<a href="main.do">페이로그로 가기</a>
+<a href="shopping.do">쇼핑몰에 머무르기</a>
 </body>
 </html>
