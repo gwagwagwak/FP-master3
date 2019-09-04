@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- <mapper namespace="MemberVO"> -->
+<mapper namespace="member">
+<!-- <mapper namespace="member">  -->
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+
+	<resultMap id="MemberVOResult" type="MemberVO">
+		<result property="m_email" column="m_email" />
+		<result property="m_pw" column="m_pw" />
+		<result property="m_fname" column="m_fname" />	<!--이름  -->
+		<result property="m_lname" column="m_lname" />	<!-- 성 -->
+		<result property="m_hp" column="m_hp" />
+		<result property="m_addr" column="m_addr" />
+		<result property="m_joindate" column="m_joindate" />
+		<result property="m_nation" column="m_nation"/>
+		<result property="m_secu" column="m_secu"/>
+		<result property="m_answer" column="m_answer"/>
+		<result property="m_type" column="m_type"/>
+		<result property="b_type" column="b_type"/>
+		<result property="b_number" column="b_number"/>
+		<result property="b_name" column="b_name"/>
+		
+	</resultMap>
+	
+	<select id="total" resultType="int">
+		select count(*) from member
+	</select>
+
+
+	<!-- 일반 회원 가입  -->
+	<!-- parameterType="MemberVO" -->
+	<insert id="insertPersonalMember">
+		insert into member
+		(m_email, m_pw, m_fname, m_lname, m_hp, m_addr, m_joindate
+		,m_nation, m_type)
+		values
+		(#{m_email}, #{m_pw}, #{m_fname}, #{m_lname}, #{m_hp}, #{m_addr}, SYSDATE, #{m_nation}, 2)
+		
+	</insert>
+	<!-- 비지니스 회원 가입  -->
+	<insert id="insertBusinessMember">
+		insert into member
+		(m_email, m_pw, m_fname, m_lname, m_hp, m_addr, m_joindate ,m_nation, m_type, b_type, b_number, b_name)
+		values
+		(#{m_email}, #{m_pw}, #{m_fname}, #{m_lname}, #{m_hp}, #{m_addr}, SYSDATE, #{m_nation}, 3, #{b_type}, #{b_number}, #{b_name})
+		
+	</insert>
+	
+	
+	
+	
+	
+	
+	<select id="getMemberList" resultType="oracle.java.nomyBatis3.model.MemberVO">
+		select * from member
+		order by m_fname
+	</select>
+	
+	
+	<select id="loginMember" resultType="oracle.java.nomyBatis3.model.MemberVO">
+		select * from member
+		where m_email=#{m_email} and m_pw = #{m_pw}
+	</select>
+	
+	
+	
+	<!-- 실패한 로그인 -->
+	<!-- <select id="loginMember" parameterType="oracle.java.nomyBatis3.model.MemberVO" resultType="oracle.java.nomyBatis3.model.MemberVO">
+		select m_email, m_pw, m_fname, m_lname, m_hp, m_addr, m_joindate
+		from member 
+		where m_email=#{m_email} and m_pw=#{m_pw}
+	</select>
+	 -->
+
+
+
+</mapper>

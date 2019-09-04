@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="PayListVO">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="PayListVOResult" type="PayListVO">
+	
+	
+	    <result property="p_no" column="p_no" />
+		<result property="p_target" column="p_target" />
+		<result property="p_date" column="p_date" />
+		<result property="p_charge" column="p_charge" />
+		<result property="p_currc" column="p_currc" />
+	    <result property="p_type" column="p_type" />
+		
+	</resultMap>
+	
+	
+	
+	
+	
+	
+	
+</mapper>

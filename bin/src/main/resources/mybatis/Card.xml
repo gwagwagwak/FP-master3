@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CardVO">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="CardVOResult" type="CardVO">
+
+		<result property="c_number" column="c_number" />
+		<result property="c_type" column="c_type" />
+		<result property="c_expr" column="c_expr" />
+		<result property="c_csc" column="c_csc" />
+		<result property="c_addr" column="c_addr" />
+		<result property="c_username" column="c_username" />
+	</resultMap>
+	
+		<select id="getCard" parameterType="int"
+		resultType="oracle.java.nomyBatis3.model.CardVO">
+		select *
+		from card
+		where c_number = ${c_number}
+	</select>
+
+	<select id="getCardList" parameterType="String"
+		resultType="oracle.java.nomyBatis3.model.CardVO">
+		select *
+		from card
+		where c_username = ${c_username}
+	</select>
+
+	<insert id="registCard">
+		insert into card(c_number, c_type, c_expr, c_csc,
+		c_addr, c_username)
+		values(#{c_number}, #{c_type}, #{c_expr}, #{c_csc},
+		#{c_addr}, #{c_username})
+	</insert>
+
+
+	<delete id="deleteCard">
+		delete
+		form card
+		where c_number = #{c_number}
+
+
+	</delete>
+	
+	<update id="updateCard">
+		update card
+		set c_expr=#{c_expr} , c_csc=#{c_csc}, c_addr=#{c_addr}
+		where c_number = #{c_number} 
+	</update>
+	
+	
+	
+	
+</mapper>

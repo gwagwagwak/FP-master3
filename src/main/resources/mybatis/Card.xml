@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="card">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="CardVOResult" type="CardVO">
+
+		<result property="c_number" column="c_number" />
+		<result property="c_type" column="c_type" />
+		<result property="c_expr" column="c_expr" />
+		<result property="c_csc" column="c_csc" />
+		<result property="c_addr" column="c_addr" />
+		<result property="c_username" column="c_username" />
+		<result property="c_username" column="c_name" />
+	</resultMap>
+
+	<select id="getCard" parameterType="int"
+		resultType="oracle.java.nomyBatis3.model.CardVO">
+		select *
+		from card
+		where c_number = #{c_number}
+	</select>
+
+	<select id="getCardList" parameterType="CardVO"
+		resultType="oracle.java.nomyBatis3.model.CardVO">
+		select *
+		from card
+
+	</select>
+
+	<insert id="registCard" parameterType="CardVO">
+		insert into card(c_number,
+		c_type, c_expr, c_csc,
+		c_addr, c_username,c_name)
+		values(#{c_number},
+		#{c_type}, #{c_expr}, #{c_csc},
+		#{c_addr}, #{c_username},#{c_name})
+	</insert>
+
+
+	<delete id="deleteCard">
+		delete
+		from card
+		where c_number = #{c_number}
+
+
+	</delete>
+	<select id="getLatestCard" parameterType="CardVO"
+		resultType="oracle.java.nomyBatis3.model.CardVO">
+		select * from card where rownum=1
+	</select>
+
+
+
+</mapper>

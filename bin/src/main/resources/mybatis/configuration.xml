@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+	<typeAliases>
+		<typeAlias alias="MemberVO"         type="oracle.java.nomyBatis3.model.MemberVO"/>
+	    <typeAlias alias="AutoPayVO"        type="oracle.java.nomyBatis3.model.AutoPayVO" />
+		<typeAlias alias="CardVO"           type="oracle.java.nomyBatis3.model.CardVO" />
+		<typeAlias alias="PayListVO"        type="oracle.java.nomyBatis3.model.PayListVO" />
+		<typeAlias alias="QnaCommentVO"     type="oracle.java.nomyBatis3.model.QnaCommentVO" />
+		<typeAlias alias="QnaMainVO"        type="oracle.java.nomyBatis3.model.QnaMainVO" />
+		<typeAlias alias="QnaVO"            type="oracle.java.nomyBatis3.model.QnaVO" />
+	
+	</typeAliases>
+	
+	
+	<mappers>
+		<mapper resource="mybatis/Member.xml"/>
+		<mapper resource="mybatis/AutoPay.xml" />
+		<mapper resource="mybatis/Card.xml" />
+		<mapper resource="mybatis/PayList.xml" />
+		<mapper resource="mybatis/QnaComment.xml"/>
+		<mapper resource="mybatis/QnaMain.xml" />
+		<mapper resource="mybatis/Qna.xml"/>
+	</mappers>
+
+
+</configuration>
