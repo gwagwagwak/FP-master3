@@ -11,7 +11,7 @@
 		<result property="c_csc" column="c_csc" />
 		<result property="c_addr" column="c_addr" />
 		<result property="c_username" column="c_username" />
-		<result property="c_username" column="c_name" />
+		<result property="c_name" column="c_name" />
 	</resultMap>
 
 	<select id="getCard" parameterType="int"

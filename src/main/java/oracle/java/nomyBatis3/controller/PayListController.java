@@ -4,12 +4,14 @@ package oracle.java.nomyBatis3.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -65,7 +67,7 @@ public class PayListController {
 	}
 	@RequestMapping(value = "payment.do")
 	public ModelAndView insertPayListHandler(@ModelAttribute PayListVO paylist,HttpServletRequest request) throws Exception {
-		//³Ñ°Ü¹ŞÀº °ª¿¡ÀÇÇØ ÀÚµ¿À¸·Î °´Ã¼ »ı¼º
+
 		HttpSession session = request.getSession();
 		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
 		Date time = new Date();
@@ -93,9 +95,44 @@ public class PayListController {
 		return mv;
 		
 	}
-	/*//Ä«µå ÇÑ°³ Á¤º¸ °¡Á®¿À±â
-	@RequestMapping(value = "getCardList.do")
-	public ModelAndView getcardlistHandle() throws Exception {
+	@RequestMapping(value = "paylist.do")
+	public String paylist(HttpServletRequest request,Model model) throws Exception {
+		HttpSession session = request.getSession();
+		List<PayListVO> plist;
+		System.out.println(request.getParameter("p_targetSearch"));
+		if(request.getParameter("p_targetSearch")==null){
+		plist = ps.getPayList((String)session.getAttribute("username"));
+		model.addAttribute("plist",plist);
+		System.out.println(request.getParameter("p_targetSearch")+"ê°€ ë„ì´ë¼ ì—¬ê¸°ë¥¼ ì§€ë‚¨");
+		}else{
+			String p_target=request.getParameter("p_targetSearch");
+			plist = ps.getTPayList(p_target);		//
+			
+			
+			model.addAttribute("plist",plist);
+			System.out.println(request.getParameter("p_targetSearch")+"ê°€ ë„ì´ ì•„ë‹ˆë¼ ì—¬ê¸°ë¥¼ ì§€ë‚¨");
+		}
+		return "paylist";
+	}
+/*	@RequestMapping(value = "targetSearch.do")
+	public ModelAndView searchcardlistHandle(HttpServletRequest request) throws Exception {
+		
+		String p_target=request.getParameter("p_targetSearch");
+		List<PayListVO> tlist = ps.getTPayList(p_target);		//
+		
+		
+		mv = new ModelAndView();
+		mv.setViewName("paylist");
+
+		mv.addObject("tlist",tlist);
+			
+		return mv;
+		
+
+	}*/
+	/*//Ä«ï¿½ï¿½ ï¿½Ñ°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½targetSearch.do
+	@RequestMapping(value = "targetSearch.do")
+	public ModelAndView searchcardlistHandle() throws Exception {
 		
 		List<CardVO> clist = cservice.getCardList();		//
 		
@@ -134,7 +171,7 @@ public class PayListController {
 
 	@RequestMapping(value = "payment.do")
 	public ModelAndView insertPayListHandler(@ModelAttribute PayListVO paylist) throws Exception {
-		//³Ñ°Ü¹ŞÀº °ª¿¡ÀÇÇØ ÀÚµ¿À¸·Î °´Ã¼ »ı¼º
+		//ï¿½Ñ°Ü¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
 		Date time = new Date();
 		mv = new ModelAndView();
@@ -156,7 +193,7 @@ public class PayListController {
 	}
 	@RequestMapping(value = "registCard.do")
 	public String registcardHandle(@ModelAttribute CardVO card, HttpServletRequest request,Model model) throws Exception {
-		//³Ñ°Ü¹ŞÀº °ª¿¡ÀÇÇØ ÀÚµ¿À¸·Î °´Ã¼ »ı¼º
+		//ï¿½Ñ°Ü¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		
 		
 		ModelAndView mv = new ModelAndView();

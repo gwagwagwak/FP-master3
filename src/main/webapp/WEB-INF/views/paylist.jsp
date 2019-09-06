@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko_G3" dir="ltr" class="no-js">
 <head>
@@ -22,7 +24,14 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/pe-icon-7-stroke.css"
 	rel="stylesheet" />
-
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
@@ -89,22 +98,17 @@
 		}
 	};
 	mountData(10);
-	document
-			.addEventListener(
-					'DOMContentLoaded',
-					function() {
-						var helpLinks = document
-								.querySelectorAll('.js_contextualHelp');
-						for (var i = 0; i < helpLinks.length; i++) {
-							helpLinks[i].addEventListener('click', function(
-									event) {
-								if (helpCenterSpark) {
-									event.preventDefault();
-									helpCenterSpark('show');
-								}
-							});
-						}
-					})
+	document.addEventListener('DOMContentLoaded', function() {
+		var helpLinks = document.querySelectorAll('.js_contextualHelp');
+		for (var i = 0; i < helpLinks.length; i++) {
+			helpLinks[i].addEventListener('click', function(event) {
+				if (helpCenterSpark) {
+					event.preventDefault();
+					helpCenterSpark('show');
+				}
+			});
+		}
+	})
 </script>
 <script async="" defer=""
 	src="https://www.paypalobjects.com/helpcenter/helpcenter-8ball-spark.min.js"></script>
@@ -176,7 +180,7 @@
 							target="_self" id="header-transfer" name="header-transfer"
 							data-name="header-transfer" data-pagename="main:header"
 							class="vx_globalNav-links js_sendMoney">카드</a></li>
-						
+
 					</ul>
 					<ul class="vx_globalNav-list_secondary">
 						<li class="vx_hidden-phone" data-autodisplay="false"><a
@@ -191,7 +195,7 @@
 								style="pointer-events: none" class="notifications-icon"
 								src="https://www.paypalobjects.com/ui-web/icons/1-0-0/notifications.svg"
 								width="32px" height="32px" /><span class="vx_a11yText">알림</span></a>
-						<div id="notifications-popover"
+							<div id="notifications-popover"
 								class="cw_popover-container cw_notifications-container"
 								tabindex="0">
 								<div id="cw_tab-list" class="cw_tab-list">
@@ -235,7 +239,7 @@
 							data-pagename="main:header"
 							class="vx_globalNav-link_logout js_logout">로그아웃</a></li>
 					</ul>
-					
+
 				</nav>
 			</div>
 		</div>
@@ -256,7 +260,7 @@
 				<div class="vx_globalNav-toggleTrigger-container">
 					<label class="vx_globalNav-toggleTrigger_animated"
 						for="toggleNavigation"><span></span>
-					<div class="vx_globalNav-toggleTrigger_animated_open">메뉴</div>
+						<div class="vx_globalNav-toggleTrigger_animated_open">메뉴</div>
 						<div class="vx_globalNav-toggleTrigger_animated_close">닫기</div></label>
 				</div>
 			</div>
@@ -333,14 +337,12 @@
 		<div class="contents vx_mainContent" id="contents" role="main"
 			aria-labelledby="heading1">
 			<ul class="nav nav-tabs">
-				<li class="nav-item active">
-					<a class="nav-link active" data-toggle="tab" href="paylist.do">카드 내역</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="myQnAlist.do">내가 쓴 글</a>
-				</li>
+				<li class="nav-item active"><a class="nav-link active"
+					data-toggle="tab" href="paylist.do">카드 내역</a></li>
+				<li class="nav-item"><a class="nav-link" data-toggle="tab"
+					href="myQnAlist.do">내가 쓴 글</a></li>
 			</ul>
-			<div class="row"  style="background-color:white">
+			<div class="row" style="background-color: white">
 				<div id="js_activityContainerView"
 					class="col-xs-12 activityModuleContainer">
 					<section id="js_activityView"
@@ -375,9 +377,9 @@
 													class="accessAid">날짜 선택</span>
 											</button>
 										</div>
-										<form name="filtersForm" class="filters-form" method="post"
+										<form name="filtersForm" class="filters-form"
 											class="filters-form" id="js_filters-form"
-											action="/transactions/filter">
+											action="paylist.do">
 											<div class="vx_form-group filters-date hidden-phone">
 												<div id="js_datePicker" class="filters-datepicker"
 													name="js_datePicker"
@@ -411,6 +413,199 @@
 																	id="js_filters-endDate" placeholder="yy.mm.dd" value><span
 																	class="customDates-icon"></span>
 															</div>
+															<!-- 															<div unselectable="on"
+																class="date-picker-wrapper nemo_datePicker"
+																style="position: absolute; left: 0px; top: 150%; visibility: visible; overflow: visible; opacity: 1; user-select: none; transition: opacity 200ms ease 0s;">
+																<div class="date-picker-box-tip" style="left: 63.5px;"></div>
+																<div class="drp_top-bar normal">
+																	<input type="button"
+																		class="apply-btn nemo_datepickerClose"
+																		aria-label="달력 닫기" value="" pa-marked="1">
+																</div>
+																<div class="month-wrapper">
+																	<table class="month1" style="border: 0px;">
+																		<thead>
+																			<tr class="caption">
+																				<th class="prev-container"><span
+																					class="prev nemo_datepickerPreviousMonth">&lt;</span></th>
+																				<th class="month-name nemo_datepickerMonthHeader"
+																					colspan="5"><span>2019년 6월</span></th>
+																				<th class="next-container"><span
+																					class="next nemo_datepickerNextMonth">&gt;</span></th>
+																			</tr>
+																			<tr class="week-name">
+																				<th>일</th>
+																				<th>월</th>
+																				<th>화</th>
+																				<th>수</th>
+																				<th>목</th>
+																				<th>금</th>
+																				<th>토</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td><div
+																						class="day nemo_datepickerDay26 nextMonth valid leftEdge"
+																						data-day="26">26</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay27 nextMonth valid"
+																						data-day="27">27</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay28 nextMonth valid"
+																						data-day="28">28</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay29 nextMonth valid"
+																						data-day="29">29</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay30 nextMonth valid"
+																						data-day="30">30</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay31 nextMonth valid rightEdge"
+																						data-day="31">31</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay1 toMonth valid leftEdge rightEdge"
+																						data-day="1">1</div></td>
+																			</tr>
+																			<tr>
+																				<td><div
+																						class="day nemo_datepickerDay2 toMonth valid leftEdge"
+																						data-day="2">2</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay3 toMonth valid"
+																						data-day="3">3</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay4 toMonth valid"
+																						data-day="4">4</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay5 toMonth valid"
+																						data-day="5">5</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay6 toMonth valid"
+																						data-day="6">6</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay7 toMonth valid"
+																						data-day="7">7</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay8 toMonth valid checked rightEdge date-selected first-date-selected"
+																						data-day="8">8</div></td>
+																			</tr>
+																			<tr>
+																				<td><div
+																						class="day nemo_datepickerDay9 toMonth valid checked leftEdge"
+																						data-day="9">9</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay10 toMonth valid checked"
+																						data-day="10">10</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay11 toMonth valid checked"
+																						data-day="11">11</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay12 toMonth valid checked"
+																						data-day="12">12</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay13 toMonth valid checked"
+																						data-day="13">13</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay14 toMonth valid checked"
+																						data-day="14">14</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay15 toMonth valid checked rightEdge"
+																						data-day="15">15</div></td>
+																			</tr>
+																			<tr>
+																				<td><div
+																						class="day nemo_datepickerDay16 toMonth valid checked leftEdge"
+																						data-day="16">16</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay17 toMonth valid checked"
+																						data-day="17">17</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay18 toMonth valid checked"
+																						data-day="18">18</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay19 toMonth valid checked"
+																						data-day="19">19</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay20 toMonth valid checked"
+																						data-day="20">20</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay21 toMonth valid checked"
+																						data-day="21">21</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay22 toMonth valid checked rightEdge"
+																						data-day="22">22</div></td>
+																			</tr>
+																			<tr>
+																				<td><div
+																						class="day nemo_datepickerDay23 toMonth valid checked leftEdge"
+																						data-day="23">23</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay24 toMonth valid checked"
+																						data-day="24">24</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay25 toMonth valid checked"
+																						data-day="25">25</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay26 toMonth valid checked"
+																						data-day="26">26</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay27 toMonth valid checked"
+																						data-day="27">27</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay28 toMonth valid checked"
+																						data-day="28">28</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay29 toMonth valid checked rightEdge"
+																						data-day="29">29</div></td>
+																			</tr>
+																			<tr>
+																				<td><div
+																						class="day nemo_datepickerDay30 toMonth valid checked leftEdge rightEdge"
+																						data-day="30">30</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay1 nextMonth valid checked leftEdge"
+																						data-day="1">1</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay2 nextMonth valid checked"
+																						data-day="2">2</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay3 nextMonth valid checked"
+																						data-day="3">3</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay4 nextMonth valid checked"
+																						data-day="4">4</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay5 nextMonth valid checked"
+																						data-day="5">5</div></td>
+																				<td><div
+																						class="day nemo_datepickerDay6 nextMonth valid checked rightEdge"
+																						data-day="6">6</div></td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+																<div class="footer">
+																	<div class="shortcuts">
+																		<span class="custom-shortcut"><a
+																			href="#currentMonth"
+																			class="vx_btn vx_btn-secondary vx_btn-small nemo_datePickerPreset0"
+																			pa-marked="1">이번 달</a></span><span class="custom-shortcut"><a
+																			href="#lastmonth"
+																			class="vx_btn vx_btn-secondary vx_btn-small nemo_datePickerPreset1"
+																			pa-marked="1">지난달</a></span><span class="custom-shortcut"><a
+																			href="#last90"
+																			class="vx_btn vx_btn-secondary vx_btn-small nemo_datePickerPreset2 active"
+																			pa-marked="1">최근 90일</a></span><span class="custom-shortcut"><a
+																			href="#ytd"
+																			class="vx_btn vx_btn-secondary vx_btn-small nemo_datePickerPreset3"
+																			pa-marked="1">올해</a></span><span class="custom-shortcut"><a
+																			href="#lastyear"
+																			class="vx_btn vx_btn-secondary vx_btn-small nemo_datePickerPreset4"
+																			pa-marked="1">지난해</a></span>
+																	</div>
+																</div>
+															</div> -->
 														</div>
 													</div>
 													<div
@@ -451,162 +646,22 @@
 												<div
 													class="js_freeTextSearch vx_form-control vx_form-control_complex form-control typeAhead">
 													<label class="elasticSearch-label accessAid">☃search.label☃</label><input
-														id="freeTextSearch" type="text" maxlength="40"
+														id="p_targetSearch" name="p_targetSearch" type="text" maxlength="40"
 														autocomplete="off" autocorrect="off" spellcheck="false"
 														class="js_filters-control elasticSearch-field js_filters-control-freeTextSearch nemo_freeTextSearch"
 														aria-owns="results" aria-expanded="false"
 														aria-autocomplete="both" role="combobox"
-														aria-activedescendant="" placeholder="활동 검색" value=""><span
-														class="icon icon-close-small filter-search-clearIcon js_freeTextSearch-remove nemo_clearSearchBtn"></span><span
-														class="icon icon-small icon-search-small filter-searchIcon js_submitSearch nemo_searchBtn ftsSearchButton"
-														tabindex="0" role="button" aria-label="Submit Search"></span>
+														aria-activedescendant="" placeholder="사용내역 검색"
+														style="width: 93%;">
+													
+													<button type="submit" value=""
+														style="background-color: transparent; border: 0px transparent solid;">
+														<i class="fa fa-search" aria-hidden="true"
+															style="color: #3b5998;"></i>
+													</button>
 												</div>
 											</div>
-											<div
-												class="vx_form-group js_advancedSearch filters-advancedSearch hidden-phone"
-												tabindex="0">
-												<a id="js_advancedSearchPopover"
-													class="filters-advancedSearchLink filterDropdown-main js_advancedSearch-link form-control vx_form-control nemo_advancedFilters"
-													href="#" name="openadvancedfilters" tabindex="-1">필터</a>
-												<div id="js_filterList" class="hide">
-													<div class="advancedSearch-txnStatusContainer">
-														<h4 class="vx_h5 advancedSearch-title">상태로 필터링</h4>
-														<div class="advancedSearch-txnStatusMenu vx_small-text"
-															role="menu" aria-labelledby="dateDropdown-btn">
-															<div
-																class="advancedSearch-txnStatusOval js_filters-control-transactionStatusFilter"
-																tabindex="0">
-																<input type="radio" id="needsAttention"
-																	name="advancedSearchTxnStatus"
-																	class="js_filterOption advancedSearch-radioInput"
-																	value="NEEDS_ATTENTION" /><label
-																	class="advancedSearch-txnStatusOvalText nemo_txnStatusFilterNeedsAttention"
-																	for="needsAttention">조치가 필요합니다.</label>
-															</div>
-															<div
-																class="advancedSearch-txnStatusOval js_filters-control-transactionStatusFilter"
-																tabindex="0">
-																<input type="radio" id="incomingPaymentsToReview"
-																	name="advancedSearchTxnStatus"
-																	class="js_filterOption advancedSearch-radioInput"
-																	value="INCOMING_PAYMENTS_TO_REVIEW" /><label
-																	class="advancedSearch-txnStatusOvalText nemo_txnStatusFilterIncomingPaymentsToReview"
-																	for="incomingPaymentsToReview">검토할 받는 결제</label>
-															</div>
-															<div
-																class="advancedSearch-txnStatusOval js_filters-control-transactionStatusFilter"
-																tabindex="0">
-																<input type="radio" id="trackingNumbersToAdd"
-																	name="advancedSearchTxnStatus"
-																	class="js_filterOption advancedSearch-radioInput"
-																	value="TRACKING_NUMBERS_TO_ADD" /><label
-																	class="advancedSearch-txnStatusOvalText nemo_txnStatusFilterTrackingNumberToAdd"
-																	for="trackingNumbersToAdd">추가할 배송 추적 번호</label>
-															</div>
-															<div
-																class="advancedSearch-txnStatusOval js_filters-control-transactionStatusFilter"
-																tabindex="0">
-																<input type="radio" id="shippingLabelsToPrint"
-																	name="advancedSearchTxnStatus"
-																	class="js_filterOption advancedSearch-radioInput"
-																	value="SHIPPING_LABELS_TO_PRINT" /><label
-																	class="advancedSearch-txnStatusOvalText nemo_txnStatusFilterShippingLabelsToPrint"
-																	for="shippingLabelsToPrint">인쇄할 배송 라벨</label>
-															</div>
-															<div
-																class="advancedSearch-txnStatusOval js_filters-control-transactionStatusFilter"
-																tabindex="0">
-																<input type="radio" id="paymentRequestsToReview"
-																	name="advancedSearchTxnStatus"
-																	class="js_filterOption advancedSearch-radioInput"
-																	value="PAYMENT_REQUESTS_TO_REVIEW" /><label
-																	class="advancedSearch-txnStatusOvalText nemo_txnStatusFilterPaymentRequestsToReview"
-																	for="paymentRequestsToReview">검토할 결제 요청</label>
-															</div>
-															<div
-																class="advancedSearch-txnStatusOval js_filters-control-transactionStatusFilter"
-																tabindex="0">
-																<input type="radio" id="invoicesToPay"
-																	name="advancedSearchTxnStatus"
-																	class="js_filterOption advancedSearch-radioInput"
-																	value="INVOICES_TO_PAY" /><label
-																	class="advancedSearch-txnStatusOvalText nemo_txnStatusFilterInvoicesToPay"
-																	for="invoicesToPay">결제할 인보이스</label>
-															</div>
-														</div>
-													</div>
-													<div class="advancedSearch-txnTypeContainer">
-														<h4 class="vx_h5 advancedSearch-title">거래 유형으로 필터링</h4>
-														<div
-															class="advancedSearch-txnTypeMenu vx_small-text solid-line-left"
-															role="menu" aria-labelledby="dateDropdown-btn">
-															<div
-																class="advancedSearch-txnTypeOval js_filters-control-transactionFilter"
-																tabindex="0">
-																<input type="radio" id="preapprovedPayments"
-																	name="advancedSearchTxn"
-																	class="js_filterOption advancedSearch-radioInput"
-																	value="PREAPPROVED" /><label
-																	class="advancedSearch-txnTypeOvalText nemo_txnFilterPreapprovedRecurring"
-																	for="preapprovedPayments">자동 결제</label>
-															</div>
-															<div
-																class="advancedSearch-txnTypeOval js_filters-control-transactionFilter"
-																tabindex="0">
-																<input type="radio" id="paymentsSent"
-																	name="advancedSearchTxn"
-																	class="js_filterOption advancedSearch-radioInput"
-																	value="PAYMENT_SENT" /><label
-																	class="advancedSearch-txnTypeOvalText nemo_txnFilterPaymentsSent"
-																	for="paymentsSent" role="button">결제</label>
-															</div>
-															<div
-																class="advancedSearch-txnTypeOval js_filters-control-transactionFilter"
-																tabindex="0">
-																<input type="radio" id="paymentsReceived"
-																	name="advancedSearchTxn"
-																	class="js_filterOption advancedSearch-radioInput"
-																	value="PAYMENT_RECEIVED" /><label
-																	class="advancedSearch-txnTypeOvalText nemo_txnFilterPaymentsReceived"
-																	for="paymentsReceived" role="button">받은 결제대금</label>
-															</div>
-															<div
-																class="advancedSearch-txnTypeOval js_filters-control-transactionFilter"
-																tabindex="0">
-																<input type="radio" id="refunds"
-																	name="advancedSearchTxn"
-																	class="js_filterOption advancedSearch-radioInput"
-																	value="REFUND" /><label
-																	class="advancedSearch-txnTypeOvalText nemo_txnFilterRefunds"
-																	for="refunds" role="button">환불</label>
-															</div>
-															<div
-																class="advancedSearch-txnTypeOval js_filters-control-transactionFilter"
-																tabindex="0">
-																<input type="radio" id="moneyTransfers"
-																	name="advancedSearchTxn"
-																	class="js_filterOption advancedSearch-radioInput"
-																	value="TRANSFER" /><label
-																	class="advancedSearch-txnTypeOvalText nemo_txnFilterTransfers"
-																	for="moneyTransfers" role="button">이체</label>
-															</div>
-														</div>
-													</div>
-													<div class="advancedSearch-txnTypeContainer">
-														<div
-															class="js_closeIcon closeIcon-container secondary margin-top-13">
-															<a href="#"
-																data-pagename="main:walletweb:activity::filters"
-																data-pagename2="main:walletweb:activity::filters:close"
-																data-track-type="link"
-																class="vx_h5 closeIcon margin-right-5" role="button"><span
-																class="icon icon-small icon-close-small color-black"
-																aria-hidden="true"></span><span class="accessAid">필터
-																	닫기</span></a>
-														</div>
-													</div>
-												</div>
-											</div>
+
 										</form>
 									</section>
 									<div id="js_displayView"
@@ -631,8 +686,44 @@
 						<div id="js_transactionCollection" class="transactionCollection">
 							<section class="activityModule nemo_activityModuleNone"
 								aria-labelledby="activityModuleHeaderNone">
-								<p class="noTrasactionsYet">아직 거래가 없습니다.</p>
-								<p class="noTrasactionsMessage">다른 날짜로 다시 시도하시겠어요?</p>
+								<!-- 								<p class="noTrasactionsYet">아직 거래가 없습니다.</p>
+								<p class="noTrasactionsMessage">다른 날짜로 다시 시도하시겠어요?</p> -->
+								<c:if test="${empty plist}">
+									<p class="noTrasactionsYet">아직 거래가 없습니다.</p>
+									<p class="noTrasactionsMessage">다른 날짜로 다시 시도하시겠어요?</p>
+								</c:if>
+								<c:if test="${!empty plist}">
+									<table class="table table-striped table-hover">
+										<thead class="thead-dark">
+											<tr>
+												<td scope="col">결제 날짜</td>
+												<td scope="col">사용 내역</td>
+												<td scope="col">결제 금액</td>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="plist" items="${plist}" begin="0" end="4">
+												<tr>
+													<td>${plist.getP_date()}</td>
+
+													<td>${plist.getP_target() }<c:if
+															test="${'1' eq plist.getP_type()}">
+															<p style="color: #a0a0a0;">
+																<span
+																	class="ppvx_text--sm cw_tile__activity-txnDetailsType test_activity-txnDetailsType">자동
+																	결제</span>
+															</p>
+														</c:if></td>
+													<td>&#8361;${plist.getP_charge() }</td>
+													<p class="vx_a11yText">${plist.getP_date()},
+														${plist.getP_target() }, undefined, 자동
+														결제,&#8361;${plist.getP_charge() }</p>
+												</tr>
+											</c:forEach>
+
+										</tbody>
+									</table>
+								</c:if>
 							</section>
 						</div>
 						<div class="loadMore-container js_loadMore-container"
@@ -685,8 +776,8 @@
 			</div>
 		</div>
 		<div id="plusfriend-chat-button"
-			style="position: fixed; bottom: 50px; right: 5px;z-index: 1;"></div>
-				<div style="z-index: 2;">
+			style="position: fixed; bottom: 50px; right: 5px; z-index: 1;"></div>
+		<div style="z-index: 2;">
 			<div class="vx_globalFooter">
 				<div class="vx_globalFooter-content">
 					<ul class="vx_globalFooter-list">
@@ -705,12 +796,15 @@
 							©<span dir="ltr">2019 PayLog, Final Project</span>
 						</p>
 						<ul class="vx_globalFooter-list_secondary">
-							<li><a class="btn btn-social btn-facebook btn-simple" href="https://www.facebook.com/">
-<i class="fa fa-facebook-square" style="color:#3b5998"></i></a></li>
-							<li><a class="btn btn-social btn-twitter btn-simple" href="https://twitter.com/?lang=ko">
-<i class="fa fa-twitter" style="color:#0084b4"></i></a></li>
-<li><a class="btn btn-social btn-pinterest btn-simple" href="https://www.pinterest.co.kr/">
-<i class="fa fa-pinterest" style="color:#cb2027"></i></a></li>
+							<li><a class="btn btn-social btn-facebook btn-simple"
+								href="https://www.facebook.com/"> <i
+									class="fa fa-facebook-square" style="color: #3b5998"></i></a></li>
+							<li><a class="btn btn-social btn-twitter btn-simple"
+								href="https://twitter.com/?lang=ko"> <i
+									class="fa fa-twitter" style="color: #0084b4"></i></a></li>
+							<li><a class="btn btn-social btn-pinterest btn-simple"
+								href="https://www.pinterest.co.kr/"> <i
+									class="fa fa-pinterest" style="color: #cb2027"></i></a></li>
 						</ul>
 					</div>
 				</div>
@@ -753,25 +847,36 @@
 		</div>
 	</div>
 	<script type='text/javascript'>
-	//<![CDATA[
-	// 사용할 앱의 JavaScript 키를 설정해 주세요.
-	Kakao.init('15bec6ab92e405aaac398891fbd4cb2f');
-	// 스토리 공유 버튼을 생성합니다.
-	Kakao.PlusFriend.createChatButton({
-		container : '#plusfriend-chat-button',
-		plusFriendId : '_xcjxbiT',
-		title : 'consult',
-		size : 'small',
-		color : 'yellow',
-		shape : 'pc',
-		supportMultipleDensities : true
-	});
-	//]]>
-</script>
+		//<![CDATA[
+		// 사용할 앱의 JavaScript 키를 설정해 주세요.
+		Kakao.init('15bec6ab92e405aaac398891fbd4cb2f');
+		// 스토리 공유 버튼을 생성합니다.
+		Kakao.PlusFriend.createChatButton({
+			container : '#plusfriend-chat-button',
+			plusFriendId : '_xcjxbiT',
+			title : 'consult',
+			size : 'small',
+			color : 'yellow',
+			shape : 'pc',
+			supportMultipleDensities : true
+		});
+		//]]>
+	</script>
 	<script type="text/javascript"
 		src="https://www.paypalobjects.com/pa/js/min/pa.js"></script>
 	<script type="text/javascript"
-		nonce="+y3NyOcjNWsaqp3qazkxMFHAD+h5t6NDitJKexrkAp8qrJPa">(function(){if(typeof PAYPAL.analytics != "undefined"){PAYPAL.core = PAYPAL.core || {};PAYPAL.core.pta = PAYPAL.analytics.setup({data:'pgrp=main%3Awalletweb%3Aactivity%3A%3Ahome&page=main%3Awalletweb%3Aactivity%3A%3Ahome%3A%3A%3A&pgst=1566290831216&calc=b5ebb49a3210a&rsta=ko_KR&pgtf=Nodejs&env=live&s=ci&ccpg=KR&csci=2388a4d9f203495ba92fc3415d2238c3&comp=activitynodeweb&tsrce=smartchatnodeweb&cu=1&gacook=912172679.1565680080&cust=XVUMEX9MVAQP4&party_id=XVUMEX9MVAQP4&acnt=premier&aver=unverified&rstr=unrestricted&cnac=KR&xe=100878%2C100852%2C100643%2C100711%2C100712%2C100272%2C100328%2C100528%2C100719%2C100323%2C100510%2C100532%2C100613%2C4114%2C2219%2C4386%2C4427%2C4430%2C2387%2C2433%2C4545%2C4605%2C4606%2C4650%2C4669%2C4684%2C4715%2C4742%2C4744%2C2709%2C2959%2C2983%2C1050%2C3159%2C3280%2C3309%2C3412%2C3583%2C1567%2C3635%2C3680%2C3704%2C2012&xt=102517%2C102419%2C101700%2C101898%2C101901%2C100650%2C100824%2C102283%2C101917%2C100814%2C102135%2C102137%2C101615%2C9813%2C5317%2C10513%2C10625%2C10633%2C5721%2C5841%2C10920%2C11065%2C11067%2C11202%2C11263%2C11313%2C11387%2C11461%2C11470%2C6527%2C7079%2C7145%2C2348%2C7542%2C7838%2C7958%2C8137%2C8546%2C3667%2C8667%2C8800%2C8861%2C5847&eppb=Y', url:'https:\/\/t.paypal.com\/ts'});}}());</script>
+		nonce="+y3NyOcjNWsaqp3qazkxMFHAD+h5t6NDitJKexrkAp8qrJPa">
+		(function() {
+			if (typeof PAYPAL.analytics != "undefined") {
+				PAYPAL.core = PAYPAL.core || {};
+				PAYPAL.core.pta = PAYPAL.analytics
+						.setup({
+							data : 'pgrp=main%3Awalletweb%3Aactivity%3A%3Ahome&page=main%3Awalletweb%3Aactivity%3A%3Ahome%3A%3A%3A&pgst=1566290831216&calc=b5ebb49a3210a&rsta=ko_KR&pgtf=Nodejs&env=live&s=ci&ccpg=KR&csci=2388a4d9f203495ba92fc3415d2238c3&comp=activitynodeweb&tsrce=smartchatnodeweb&cu=1&gacook=912172679.1565680080&cust=XVUMEX9MVAQP4&party_id=XVUMEX9MVAQP4&acnt=premier&aver=unverified&rstr=unrestricted&cnac=KR&xe=100878%2C100852%2C100643%2C100711%2C100712%2C100272%2C100328%2C100528%2C100719%2C100323%2C100510%2C100532%2C100613%2C4114%2C2219%2C4386%2C4427%2C4430%2C2387%2C2433%2C4545%2C4605%2C4606%2C4650%2C4669%2C4684%2C4715%2C4742%2C4744%2C2709%2C2959%2C2983%2C1050%2C3159%2C3280%2C3309%2C3412%2C3583%2C1567%2C3635%2C3680%2C3704%2C2012&xt=102517%2C102419%2C101700%2C101898%2C101901%2C100650%2C100824%2C102283%2C101917%2C100814%2C102135%2C102137%2C101615%2C9813%2C5317%2C10513%2C10625%2C10633%2C5721%2C5841%2C10920%2C11065%2C11067%2C11202%2C11263%2C11313%2C11387%2C11461%2C11470%2C6527%2C7079%2C7145%2C2348%2C7542%2C7838%2C7958%2C8137%2C8546%2C3667%2C8667%2C8800%2C8861%2C5847&eppb=Y',
+							url : 'https:\/\/t.paypal.com\/ts'
+						});
+			}
+		}());
+	</script>
 	<noscript>
 		<img
 			src="https:\/\/t.paypal.com\/ts?nojs=1&pgrp=main%3Awalletweb%3Aactivity%3A%3Ahome&page=main%3Awalletweb%3Aactivity%3A%3Ahome%3A%3A%3A&pgst=1566290831216&calc=b5ebb49a3210a&rsta=ko_KR&pgtf=Nodejs&env=live&s=ci&ccpg=KR&csci=2388a4d9f203495ba92fc3415d2238c3&comp=activitynodeweb&tsrce=smartchatnodeweb&cu=1&gacook=912172679.1565680080&cust=XVUMEX9MVAQP4&party_id=XVUMEX9MVAQP4&acnt=premier&aver=unverified&rstr=unrestricted&cnac=KR&xe=100878%2C100852%2C100643%2C100711%2C100712%2C100272%2C100328%2C100528%2C100719%2C100323%2C100510%2C100532%2C100613%2C4114%2C2219%2C4386%2C4427%2C4430%2C2387%2C2433%2C4545%2C4605%2C4606%2C4650%2C4669%2C4684%2C4715%2C4742%2C4744%2C2709%2C2959%2C2983%2C1050%2C3159%2C3280%2C3309%2C3412%2C3583%2C1567%2C3635%2C3680%2C3704%2C2012&xt=102517%2C102419%2C101700%2C101898%2C101901%2C100650%2C100824%2C102283%2C101917%2C100814%2C102135%2C102137%2C101615%2C9813%2C5317%2C10513%2C10625%2C10633%2C5721%2C5841%2C10920%2C11065%2C11067%2C11202%2C11263%2C11313%2C11387%2C11461%2C11470%2C6527%2C7079%2C7145%2C2348%2C7542%2C7838%2C7958%2C8137%2C8546%2C3667%2C8667%2C8800%2C8861%2C5847&eppb=Y"
@@ -780,7 +885,13 @@
 	<script
 		src="https://www.paypalobjects.com/web/res/1b6/e891e830e7bb8eb363d482eaa40c4/js/apps/app.js"></script>
 	<script type="text/javascript"
-		nonce="+y3NyOcjNWsaqp3qazkxMFHAD+h5t6NDitJKexrkAp8qrJPa">var dataLayer = {contentCountry: 'G3'.toLowerCase(),contentLanguage: 'ko_G3'.toLowerCase(),FptiId: '89cdedd416cac1200013088efff1b49a'};</script>
+		nonce="+y3NyOcjNWsaqp3qazkxMFHAD+h5t6NDitJKexrkAp8qrJPa">
+		var dataLayer = {
+			contentCountry : 'G3'.toLowerCase(),
+			contentLanguage : 'ko_G3'.toLowerCase(),
+			FptiId : '89cdedd416cac1200013088efff1b49a'
+		};
+	</script>
 	<script type="text/javascript"
 		src="//www.paypalobjects.com/tagmgmt/bootstrap.js"></script>
 	<script async defer

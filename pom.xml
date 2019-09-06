@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.ch</groupId>
-	<artifactId>webprj</artifactId>
-	<name>ch09</name>
+	<groupId>com.my</groupId>
+	<artifactId>SFPL1</artifactId>
+	<name>SFPL1</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
-		<java-version>1.8</java-version>
-		<org.springframework-version>4.1.1.RELEASE</org.springframework-version>
+		<java-version>1.6</java-version>
+		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
@@ -37,7 +37,35 @@
 		<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 	
 	
-		
+		<!-- quartz 라이브러러리 -->
+
+<dependency>
+
+    <groupId>org.quartz-scheduler</groupId>
+
+    <artifactId>quartz</artifactId>
+
+    <version>2.3.0</version>
+
+</dependency>
+
+
+
+<!-- 스프링 Quartz 도우미 라이브러리 -->
+
+<dependency>
+
+    <groupId>org.springframework</groupId>
+
+    <artifactId>spring-context-support</artifactId>
+
+    <version>4.3.4.RELEASE</version>
+
+</dependency>
+
+
+
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>

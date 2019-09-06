@@ -35,5 +35,13 @@
 		from paylist where p_username=#{p_username} order by p_date desc
 
 	</select>
-
+		<select id="getAPayList" parameterType="PayListVO" resultType="oracle.java.nomyBatis3.model.PayListVO">
+	    select *
+	    from paylist where p_username=#{p_username} and p_type='1' order by p_date desc
+	</select>
+	
+		<select id="getTPayList" parameterType="PayListVO" resultType="oracle.java.nomyBatis3.model.PayListVO">
+	    select *
+	    from paylist where p_target=#{p_target} order by p_date desc
+	</select>
 </mapper>

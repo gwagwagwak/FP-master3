@@ -10,4 +10,7 @@ public interface PayListService {
 
 	public void insertPayList(PayListVO paylist) throws Exception;
 
+	public List<PayListVO> getAPayList(PayListVO pl) throws Exception;
+	
+	public List<PayListVO> getTPayList(String p_target) throws Exception;
 }

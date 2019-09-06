@@ -9,6 +9,6 @@
 <body>
 
 <a href="payform.do?p_target=Ryzac.Inc&&p_charge=12000&&p_type=1">구매하기</a>
-
+<a href="payform.do?p_target=COSMETICA&&p_charge=25000&&p_type=0">구매하기</a>
 </body>
 </html>

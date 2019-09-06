@@ -24,4 +24,12 @@ public class PayListImpl implements PayListDao{
 		session.insert("paylist.insertPayList", paylist);
 		
 	}
+	@Override
+	public List<PayListVO> getAPayList(PayListVO pl) throws Exception{
+		return session.selectList("paylist.getAPayList",pl.getp_username());
+	}
+	@Override
+	public List<PayListVO> getTPayList(String p_target) throws Exception{
+		return session.selectList("paylist.getTPayList",p_target);
+	}
 }

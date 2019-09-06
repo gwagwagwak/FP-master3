@@ -55,7 +55,7 @@ where rn >= 1;
 select count(*) from qna
 	   
 
-
+drop table member;
 select * from qna;
 --qna 한개 읽어오기
 
@@ -115,9 +115,11 @@ CREATE TABLE card (
 	c_expr	date				NULL,
 	c_csc	number(5)			NULL,
 	c_addr	varchar2(500)	NULL,
-	c_user	varchar2(30)	NOT NULL
+	c_username	varchar2(30)	NOT NULL,
+	c_name varchar2(30)
 );
 select * from card;
+drop table card;
 
 CREATE TABLE paylist (
 	p_no	number(20)		primary key,
@@ -128,6 +130,7 @@ CREATE TABLE paylist (
 	p_type	varchar2(2)		NULL,
 	p_cnumber	number(20)		NOT NULL,
 	p_username	varchar2(30)		NOT NULL
+	
 );
 
 CREATE TABLE autopay (

@@ -26,6 +26,14 @@ public class PayListServiceImpl implements PayListService{
 		pdao.insertPayList(paylist);
 		
 	}
+	@Override
+	public List<PayListVO> getAPayList(PayListVO pl) throws Exception{
+		return pdao.getAPayList(pl);
+	}
+	@Override
+	public List<PayListVO> getTPayList(String p_target) throws Exception{
+		return pdao.getTPayList(p_target);
+	}
 
 	
 }
